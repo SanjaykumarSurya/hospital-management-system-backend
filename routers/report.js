@@ -1,0 +1,67 @@
+import express from 'express';
+import * as fileController from "../controller/file.js";
+import upload from '../common/fileupload.js'
+
+const router = express.Router();
+
+router.post('/reports',upload.single('report'),(req,res)=>{
+    fileController.uplaodFile(req).then((result)=>{
+        if(!result){
+            res.status(500).send(result)
+        }
+        res.status(201).send(result)
+    })
+    .catch(err => res.status(500).send({
+        message : err.message
+    }))
+})
+
+router.get('/reports',(req,res)=>{
+    fileController.getFile(req).then((result)=>{
+        if(!result){
+            res.status(500).send(result)
+        }
+        res.status(201).send(result)
+    })
+    .catch(err => res.status(500).send({
+        message : err.message
+    }))
+})
+
+router.get('/reports/:fileId',(req,res)=>{
+    fileController.getSingleFile(req).then((result)=>{
+        if(!result){
+            res.status(500).send(result)
+        }
+        res.status(201).send(result)
+    })
+    .catch(err => res.status(500).send({
+        message : err.message
+    }))
+})
+
+router.put('/reports/:fileId',upload.single('report'),(req,res)=>{
+    fileController.updateFile(req).then((result)=>{
+        if(!result){
+            res.status(500).send(result)
+        }
+        res.status(201).send(result)
+    })
+    .catch(err => res.status(500).send({
+        message : err.message
+    }))
+})
+
+router.delete('/reports/:fileId',(req,res)=>{
+    fileController.deleteFile(req).then((result)=>{
+        if(!result){
+            res.status(500).send(result)
+        }
+        res.status(201).send(result)
+    })
+    .catch(err => res.status(500).send({
+        message : err.message
+    }))
+})
+
+export default router;
