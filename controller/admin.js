@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import adminModel from '../model/admin.js';
 import doctorModel from '../model/doctor.js';
 import patientModel from "../model/patient.js";
-import appointementModel from "../model/appointment.js";
+import appointmentModel from "../model/appointment.js";
 import bcrypt from "bcryptjs";
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
@@ -159,7 +159,7 @@ const getDoctor = async (req) => {
     const data = req.query;
     const sort = Number(data.sort ?? 1);
     const sortField = String(data.sortField ?? "name");
-    const limit = Number(data.limit ?? 20);
+    const limit = Number(data.limit ?? 5);
     const skip = Number(data.skip ?? 0);
 
     const doctors = await doctorModel.aggregate([
@@ -213,23 +213,29 @@ const deleteDoctor = async (req) => {
 
 const updateDoctor = async (req) => {
     try {
-        const {doctorId, name, specialization, email, phone, availableDays, timeSlot } = req.body;
-        console.log(doctorId)
+        const { id } = req.params;
+        const { name, specialization, email, phone, availabledays, timeslot } = req.body;
+        console.log(id)
         console.log(name)
         console.log(specialization)
-      await doctorModel.updateOne(
-            { _id: new ObjectId(doctorId) },
+        await doctorModel.updateOne(
+            { _id: new ObjectId(id) },
             {
                 $set: {
-                    name, specialization, email, phone, availableDays, timeSlot
+                    name, specialization, email, phone, availabledays, timeslot
                 }
             }
         );
 
-    return { message: "Doctor updated successfully" };
-  } catch (err) {
-    return { message: err.message };
-  }
+        return { 
+            message: "Doctor updated successfully" 
+        };
+    } 
+    catch (err) {
+        return { 
+            message: err.message 
+        };
+    }
 };
 
 const createPatient = async (req) => {
@@ -255,11 +261,10 @@ const getPatient = async (req) => {
         const data = req.query;
         const sort = Number(data.sort ?? 1);
         const sortField = String(data.sortField ?? "name");
-        const limit = Number(data.limit ?? 20);
-        const skip = Number(data.skip ?? 0)
+        const limit = Number(data.limit ?? 5);
+        const skip = Number(data.skip ?? 0);
+
         const Patients = await patientModel.aggregate([
-            
-                
             { $sort: { [sortField]: sort } },
             { $limit: limit },
             { $skip: skip }
@@ -310,12 +315,14 @@ const getSinglePatient = async (req) => {
 
 const updatePatient = async (req) => {
     try {
-        const { patientId, name, age, gender, contact, address, medicalHistory } = req.body;
-        console.log(patientId)
+        const { id } = req.params;
+
+        const {  name, age, gender, contact, address, medicalHistory } = req.body;
+        console.log(id)
         console.log(name)
         console.log(age)
         await patientModel.updateOne(
-            { _id: new ObjectId(patientId) },
+            { _id: new ObjectId(id) },
             {
                 $set: {
                     name, age, gender, contact, address, medicalHistory
@@ -324,7 +331,7 @@ const updatePatient = async (req) => {
         );
         return {
             message: " Patient updated successfully"
-        }
+        };
     }
     catch (err) {
         return {
@@ -337,8 +344,8 @@ const updatePatient = async (req) => {
 const createAppointment = async (req) => {
     try {
         const { patientId, doctorId, date, status, notes } = req.body
-        const createAppointment = await appointementModel.create({
-            patientId, doctorId, date, status, notes, report
+        const createAppointment = await appointmentModel.create({
+            patientId, doctorId, date, status, notes
         })
         return {
             message: "appointment created successfully",
@@ -352,47 +359,69 @@ const createAppointment = async (req) => {
     }
 }
 
-const getAppointmet = async (req) => {
+const getAppointment = async (req) => {
     try {
         const data = req.query;
         const sort = Number(data.sort ?? 1);
         const sortField = String(data.sortField ?? "Booked");
         const limit = Number(data.limit ?? 20);
         const skip = Number(data.skip ?? 0)
-        const getAppointmet = await appointementModel.aggregate([
-            {
-                $facet: {
-                    data: [
-                        { $sort: { [sortField]: sort } },
-                        { $limit: limit },
-                        { $skip: skip }
-                    ],
-                    count: [
-                        { $count: "Total count" }
-                    ]
-                }
-            }
-        ])
-        return {
-            message: "Doctor Lists",
-            getAppointmet
+        const getAppointment = await appointmentModel.aggregate([
+             {
+        $lookup: {
+          from: "patients",
+          localField: "patientId",
+          foreignField: "_id",
+          as: "patient"
         }
+      },
+      { $unwind: "$patient" },
+      {
+        $lookup: {
+          from: "doctors",
+          localField: "doctorId",
+          foreignField: "_id",
+          as: "doctor"
+        }
+      },
+      { $unwind: "$doctor" },
+      {
+        $project: {
+          _id: 1,
+          date: 1,
+          status: 1,
+          notes: 1,
+          patientName: "$patient.name",
+          doctorName: "$doctor.name"
+        }
+      },
+
+            { $sort: { [sortField]: sort } },
+            { $limit: limit },
+            { $skip: skip },
+        ]);
+        const count = await appointmentModel.countDocuments();
+
+         return {
+            message: "Appointement List fetched successfully",
+            getAppointment,
+            totalCount: count
+        };
     }
     catch (err) {
         return {
             message: err.message
-        }
+        };
     }
 }
-
 const deleteAppointment = async (req) => {
     try {
-        const appointementId = req.params.appointementId;
-        await appointementModel.deleteOne({
-            _id: new ObjectId(appointementId)
+        const appointmentId = req.params.appointmentId;
+        await appointmentModel.deleteOne({
+            _id: new ObjectId(appointmentId)
         })
         return {
-            message: "successfully deleted"
+            message: "Appointment successfully deleted"
         }
     }
     catch (err) {
@@ -404,18 +433,20 @@ const deleteAppointment = async (req) => {
 
 const updateAppointment = async (req) => {
     try {
-        const { appointementId, patientId, doctorId, date, status, notes } = req.body
-        await appointementModel.updateOne(
-            { _id: new ObjectId(appointementId) },
+        const { id } = req.params;
+        const {  patientId, doctorId, date, status, notes } = req.body;
+         console.log(id)
+        await appointmentModel.updateOne(
+            { _id: new ObjectId(id) },
             {
                 $set: {
                     patientId, doctorId, date, status, notes
                 }
             }
-        )
+        );
         return {
-            message: "update successfully"
-        }
+            message: "Appointment update successfully"
+        };
     }
     catch (err) {
         return {
@@ -426,8 +457,8 @@ const updateAppointment = async (req) => {
 
 const getSingleAppointment = async (req) => {
     try {
-        const appointementId = req.params.appointementId;
-        return await appointementModel.findById({ _id: new ObjectId(appointementId) })
+        const appointmentId = req.params.appointmentId;
+        return await appointmentModel.findById({ _id: new ObjectId(appointmentId) })
     }
     catch (err) {
         return {
@@ -438,7 +469,7 @@ const getSingleAppointment = async (req) => {
 
 export {
     createSignup, adminLogin,createDoctor, getDoctor, deleteDoctor, updateDoctor,
-    createPatient, getAppointmet, deleteAppointment, getPatient, deletePatient,
+    createPatient, getAppointment, deleteAppointment, getPatient, deletePatient,
     updatePatient, createAppointment, getAdmin, getUser, getSingleDoctor,
     getSinglePatient, updateAppointment, getSingleAppointment
 }

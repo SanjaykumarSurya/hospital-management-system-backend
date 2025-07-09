@@ -4,9 +4,9 @@ import mongoose from 'mongoose';
 
 const {ObjectId} = mongoose.Types
 
-const uplaodFile = async (req) => {
+const uploadFile = async (req) => {
     try {
-        const { patientId, doctorName, description } = req.body;
+        const { patientId, doctorName, description, date } = req.body;
         const fileUrl = req.file.path
         if (!fileUrl) {
             return {
@@ -14,11 +14,11 @@ const uplaodFile = async (req) => {
             }
         }
         const uploadFile = await fileModel.create({
-            patientId, doctorName, description, fileUrl: fileUrl
+            patientId, doctorName, description, date, fileUrl: fileUrl
         })
         return {
             message: "successfully upload file",
-            uplaodFile
+            uploadFile
         }
     }
     catch (err) {
@@ -33,7 +33,7 @@ const getFile = async (req) => {
         const data = req.query;
         const skip = Number(data.skip ?? 0);
         const limit = Number(data.limit ?? 20);
-        const sort = Number(data.sort ?? 1);
+        const sortOrder = Number(data.sort ?? -1);
         const reports = await fileModel.aggregate([
             {
                 $lookup: {
@@ -57,7 +57,7 @@ const getFile = async (req) => {
             {
                 $facet :{
                     data : [
-                        {$sort : sort},
+                        {$sort : { date: sortOrder }},
                         {$skip : skip},
                         {$limit : limit}
                     ],
@@ -94,12 +94,12 @@ const getSingleFile = async(req)=>{
 
 const updateFile = async(req)=>{
     try{
-        const {fileId, patientId, doctorName, description} = req.body;
+        const {fileId, patientId, doctorName,date, description} = req.body;
         const fileUrl = req.file.path;
         await fileModel.updateOne(
             {_id : new ObjectId(fileId)},
             {$set : {
-                patientId, doctorName, description, fileUrl : fileUrl
+                patientId, doctorName, description,date, fileUrl : fileUrl
             }}
         )
         return{
@@ -129,5 +129,5 @@ const deleteFile = async(req)=>{
 }
 
 export {
-    uplaodFile, getFile, getSingleFile, updateFile, deleteFile
+    uploadFile, getFile, getSingleFile, updateFile, deleteFile
 }

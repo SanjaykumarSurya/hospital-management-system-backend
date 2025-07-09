@@ -2,19 +2,25 @@ import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 import admin from './routers/admin.js';
 import doctor from './routers/doctor.js';
-import appointement from './routers/appointments.js';
+import appointment from './routers/appointments.js';
 import patient from './routers/patient.js';
 import report from './routers/report.js';
 import doctorRouter from './routers/doctor.js';
-import patientRouter from './routers/patient.js'
+import patientRouter from './routers/patient.js';
+import appointmentRouter from './routers/appointments.js';
+import reportRouter from './routers/report.js';
+import downloadRouter from './routers/download.js';
 
 
 dotenv.config();
 
 const app = express();
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const port = process.env.PORT || 3000;
 const mongodb = process.env.MONGO_URL 
 
@@ -36,8 +42,13 @@ app.use(cors({
 }));
 app.use('/api', doctorRouter);
 app.use('/api', patientRouter);
-app.use('/api',admin, doctor, appointement, patient, report)
-
+app.use('/api', appointmentRouter);
+app.use('/api', reportRouter)
+app.use('/api', downloadRouter);
+app.use('/api',admin, doctor, appointment, patient, report);
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/uploads', express.static(path.join(process.cwd(), 'uploads')));
+// app.use('/uploads', express.static(path.resolve('uploads')));
 app.listen(port, (err)=>{
     if(err) throw err;
     console.log(`Server Running port is ${port}`)

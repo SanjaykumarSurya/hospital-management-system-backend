@@ -1,17 +1,25 @@
 import mongoose from "mongoose";
 
 const appointmentSchema = new mongoose.Schema({
-    patinetId : mongoose.Schema.Types.ObjectId,
+    patientId : mongoose.Schema.Types.ObjectId,
     doctorId : mongoose.Schema.Types.ObjectId,
-    date : Date,
+    date: {
+        type: Date,
+        required: true
+    },
     status : {
         type : String,
-        enum : ["Booked", "completed", "cancelled"],
+        enum : ["Booked", "Completed", "Cancelled"],
         default: "Booked"
     },
-    notes : String,
+    notes : String
+},{
+    
+    versionKey : false,
+    timestamps : true
 })
 
-const appointement = mongoose.model('appointment', appointmentSchema);
 
-export default appointement
+const appointment = mongoose.model('appointment', appointmentSchema);
+
+export default appointment;

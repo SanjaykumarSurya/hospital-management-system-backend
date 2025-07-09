@@ -1,6 +1,5 @@
 import express from 'express';
 import * as adminController from '../controller/admin.js';
-import { createDoctor } from '../controller/admin.js';
 
 const router = express.Router();
 
@@ -32,11 +31,11 @@ router.get('/doctors', (req,res)=>{
         }))
 })
 
-router.put('/doctors', (req,res)=>{
+router.put('/doctors/:id', (req,res)=>{
      adminController.updateDoctor(req).then((result) => {
         if (!result) {
-            res.status(500).send(result);
-            return
+           return res.status(500).send(result);
+            
         }
         res.status(200).send(result)
     })

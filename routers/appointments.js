@@ -4,12 +4,13 @@ import * as adminController from '../controller/admin.js';
 const router = express.Router();
 
 router.post('/appointments', (req, res) => {
+    const appointment = req.body;
     adminController.createAppointment(req).then((result) => {
         if (!result) {
             res.status(500).send(result);
-            return
+            return result;
         }
-        res.status(201).send(result)
+        res.status(201).json(result);
     })
         .catch(err => res.status(500).send({
             message: err.message
@@ -17,25 +18,25 @@ router.post('/appointments', (req, res) => {
 })
 
 router.get('/appointments', (req, res) => {
-    adminController.getAppointmet(req).then((result) => {
+    adminController.getAppointment(req).then((result) => {
         if (!result) {
             res.status(500).send(result);
-            return
+            return result;
         }
-        res.status(201).send(result)
+        res.status(200).send(result)
     })
         .catch(err => res.status(500).send({
             message: err.message
         }))
 })
 
-router.put('/appointments/:appointmentId', (req, res) => {
+router.put('/appointments/:id', (req, res) => {
     adminController.updateAppointment(req).then((result) => {
         if (!result) {
-            res.status(500).send(result);
-            return
+            return res.status(500).send(result);
+            
         }
-        res.status(201).send(result)
+        res.status(200).send(result)
     })
         .catch(err => res.status(500).send({
             message: err.message

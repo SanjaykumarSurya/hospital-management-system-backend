@@ -8,6 +8,7 @@ const fileSchema = new mongoose.Schema({
     date : {type : Date, default:Date.now}
 },{
     versionKey : false,
+    timestamps : true
 })
 
 const file = mongoose.model('reportFile', fileSchema);
