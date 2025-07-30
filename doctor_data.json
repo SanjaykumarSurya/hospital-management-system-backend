@@ -1,0 +1,550 @@
+[
+  {
+    "name": "Dr.Megan Chang",
+    "specialization": "Psychiatry",
+    "email": "greenwilliam@yahoo.com",
+    "phone": "7593824219",
+    "availabledays": [
+      "Monday",
+      "Wednesday"
+    ],
+    "timeSolt": "02:00pm - 03:00pm"
+  },
+  {
+    "name": "Dr.Rachel Collins",
+    "specialization": "Gastroenterology",
+    "email": "thomas15@stewart-bowman.com",
+    "phone": "7840801609",
+    "availabledays": [
+      "Wednesday",
+      "Thursday"
+    ],
+    "timeSolt": "11:00am - 12:00pm"
+  },
+  {
+    "name": "Dr.Jessica Padilla",
+    "specialization": "Endocrinology",
+    "email": "sallywalker@pratt.com",
+    "phone": "5871484185",
+    "availabledays": [
+      "Friday"
+    ],
+    "timeSolt": "10:00am - 11:00am"
+  },
+  {
+    "name": "Dr.Amy Roberts",
+    "specialization": "Dermatology",
+    "email": "pstewart@white-underwood.com",
+    "phone": "7112201868",
+    "availabledays": [
+      "Monday"
+    ],
+    "timeSolt": "02:00pm - 03:00pm"
+  },
+  {
+    "name": "Dr.Melissa Jacobson",
+    "specialization": "Dermatology",
+    "email": "shannon51@yahoo.com",
+    "phone": "7953304135",
+    "availabledays": [
+      "Saturday",
+      "Friday",
+      "Tuesday"
+    ],
+    "timeSolt": "11:00am - 12:00pm"
+  },
+  {
+    "name": "Dr.Lisa Garcia",
+    "specialization": "Neurology",
+    "email": "brandonberry@guzman.com",
+    "phone": "6151090321",
+    "availabledays": [
+      "Monday",
+      "Wednesday",
+      "Thursday"
+    ],
+    "timeSolt": "02:00pm - 03:00pm"
+  },
+  {
+    "name": "Dr.Sharon Johnson",
+    "specialization": "Neurology",
+    "email": "huffchad@gmail.com",
+    "phone": "5620870916",
+    "availabledays": [
+      "Thursday",
+      "Wednesday"
+    ],
+    "timeSolt": "02:00pm - 03:00pm"
+  },
+  {
+    "name": "Dr.Rebecca Harrison",
+    "specialization": "Pediatrics",
+    "email": "tammybrown@moore.com",
+    "phone": "2076984564",
+    "availabledays": [
+      "Thursday",
+      "Saturday",
+      "Wednesday"
+    ],
+    "timeSolt": "09:00am - 10:00am"
+  },
+  {
+    "name": "Dr.Stephen Miller",
+    "specialization": "Urology",
+    "email": "dennis75@roberts.org",
+    "phone": "4661093523",
+    "availabledays": [
+      "Monday"
+    ],
+    "timeSolt": "03:00pm - 04:00pm"
+  },
+  {
+    "name": "Dr.Jennifer Nunez",
+    "specialization": "Psychiatry",
+    "email": "moralesjacqueline@yahoo.com",
+    "phone": "2714278789",
+    "availabledays": [
+      "Saturday",
+      "Monday",
+      "Thursday"
+    ],
+    "timeSolt": "11:00am - 12:00pm"
+  },
+  {
+    "name": "Dr.Mark Monroe",
+    "specialization": "Pediatrics",
+    "email": "olopez@monroe.com",
+    "phone": "6503008913",
+    "availabledays": [
+      "Wednesday",
+      "Monday",
+      "Tuesday"
+    ],
+    "timeSolt": "02:00pm - 03:00pm"
+  },
+  {
+    "name": "Dr.Morgan Ramirez",
+    "specialization": "Pediatrics",
+    "email": "alvarezsandra@miller.com",
+    "phone": "2851240003",
+    "availabledays": [
+      "Tuesday"
+    ],
+    "timeSolt": "02:00pm - 03:00pm"
+  },
+  {
+    "name": "Dr.Stacey Mays",
+    "specialization": "Gastroenterology",
+    "email": "djoseph@graham.biz",
+    "phone": "0224555159",
+    "availabledays": [
+      "Monday"
+    ],
+    "timeSolt": "11:00am - 12:00pm"
+  },
+  {
+    "name": "Dr.Frank Holden",
+    "specialization": "Urology",
+    "email": "ralph82@yahoo.com",
+    "phone": "7304281465",
+    "availabledays": [
+      "Monday",
+      "Wednesday"
+    ],
+    "timeSolt": "02:00pm - 03:00pm"
+  },
+  {
+    "name": "Dr.Cory Kerr",
+    "specialization": "Dermatology",
+    "email": "mary51@yahoo.com",
+    "phone": "7604522961",
+    "availabledays": [
+      "Monday",
+      "Friday",
+      "Wednesday"
+    ],
+    "timeSolt": "02:00pm - 03:00pm"
+  },
+  {
+    "name": "Dr.Kara Brown",
+    "specialization": "Pediatrics",
+    "email": "longapril@mora-kramer.com",
+    "phone": "1534926351",
+    "availabledays": [
+      "Friday",
+      "Saturday",
+      "Wednesday"
+    ],
+    "timeSolt": "01:00pm - 02:00pm"
+  },
+  {
+    "name": "Dr.Shannon Rhodes",
+    "specialization": "Neurology",
+    "email": "nsanders@williams.com",
+    "phone": "3765821972",
+    "availabledays": [
+      "Thursday",
+      "Wednesday",
+      "Tuesday"
+    ],
+    "timeSolt": "11:00am - 12:00pm"
+  },
+  {
+    "name": "Dr.Natalie Simpson",
+    "specialization": "Orthopedics",
+    "email": "obolton@hotmail.com",
+    "phone": "8930555082",
+    "availabledays": [
+      "Tuesday"
+    ],
+    "timeSolt": "09:00am - 10:00am"
+  },
+  {
+    "name": "Dr.Megan Aguilar",
+    "specialization": "Endocrinology",
+    "email": "marshzachary@gmail.com",
+    "phone": "3204075227",
+    "availabledays": [
+      "Wednesday",
+      "Thursday",
+      "Monday"
+    ],
+    "timeSolt": "09:00am - 10:00am"
+  },
+  {
+    "name": "Dr.Rachel Shaw",
+    "specialization": "Orthopedics",
+    "email": "burgessrebecca@roberts.biz",
+    "phone": "6993002489",
+    "availabledays": [
+      "Monday"
+    ],
+    "timeSolt": "09:00am - 10:00am"
+  },
+  {
+    "name": "Dr.Trevor Green",
+    "specialization": "Urology",
+    "email": "ycruz@gmail.com",
+    "phone": "2345007627",
+    "availabledays": [
+      "Thursday",
+      "Friday",
+      "Wednesday"
+    ],
+    "timeSolt": "02:00pm - 03:00pm"
+  },
+  {
+    "name": "Dr.Lisa Gomez",
+    "specialization": "Pediatrics",
+    "email": "dhughes@ruiz.com",
+    "phone": "9925185367",
+    "availabledays": [
+      "Saturday"
+    ],
+    "timeSolt": "02:00pm - 03:00pm"
+  },
+  {
+    "name": "Dr.Jaclyn Mendez",
+    "specialization": "Psychiatry",
+    "email": "montesjennifer@yahoo.com",
+    "phone": "6418306753",
+    "availabledays": [
+      "Wednesday",
+      "Thursday",
+      "Friday"
+    ],
+    "timeSolt": "03:00pm - 04:00pm"
+  },
+  {
+    "name": "Dr.Sue Winters",
+    "specialization": "Oncology",
+    "email": "bscott@estrada.com",
+    "phone": "8412696116",
+    "availabledays": [
+      "Wednesday"
+    ],
+    "timeSolt": "02:00pm - 03:00pm"
+  },
+  {
+    "name": "Dr.Kim Navarro",
+    "specialization": "Neurology",
+    "email": "ajordan@crawford.com",
+    "phone": "5115055203",
+    "availabledays": [
+      "Friday",
+      "Wednesday"
+    ],
+    "timeSolt": "10:00am - 11:00am"
+  },
+  {
+    "name": "Dr.Patricia Clark",
+    "specialization": "Pediatrics",
+    "email": "adkinskelly@johnson.com",
+    "phone": "1754203557",
+    "availabledays": [
+      "Saturday"
+    ],
+    "timeSolt": "11:00am - 12:00pm"
+  },
+  {
+    "name": "Dr.Cynthia White",
+    "specialization": "Neurology",
+    "email": "fergusonkyle@hurst-bautista.com",
+    "phone": "8332456029",
+    "availabledays": [
+      "Tuesday",
+      "Wednesday",
+      "Saturday"
+    ],
+    "timeSolt": "11:00am - 12:00pm"
+  },
+  {
+    "name": "Dr.Jacqueline Anderson",
+    "specialization": "Psychiatry",
+    "email": "jyang@hotmail.com",
+    "phone": "4513758066",
+    "availabledays": [
+      "Monday"
+    ],
+    "timeSolt": "10:00am - 11:00am"
+  },
+  {
+    "name": "Dr.Scott Watson",
+    "specialization": "Pediatrics",
+    "email": "clementslaura@yahoo.com",
+    "phone": "8927626623",
+    "availabledays": [
+      "Friday"
+    ],
+    "timeSolt": "03:00pm - 04:00pm"
+  },
+  {
+    "name": "Dr.Douglas Ford",
+    "specialization": "Urology",
+    "email": "sfischer@greer.org",
+    "phone": "0341489267",
+    "availabledays": [
+      "Saturday",
+      "Monday",
+      "Friday"
+    ],
+    "timeSolt": "09:00am - 10:00am"
+  },
+  {
+    "name": "Dr.Amy Sullivan",
+    "specialization": "Pediatrics",
+    "email": "nelsonelizabeth@scott.org",
+    "phone": "7145439101",
+    "availabledays": [
+      "Friday",
+      "Monday",
+      "Thursday"
+    ],
+    "timeSolt": "09:00am - 10:00am"
+  },
+  {
+    "name": "Dr.Matthew Moreno",
+    "specialization": "Oncology",
+    "email": "carloscallahan@meyer-berry.com",
+    "phone": "6864475922",
+    "availabledays": [
+      "Monday"
+    ],
+    "timeSolt": "02:00pm - 03:00pm"
+  },
+  {
+    "name": "Dr.Richard Mcdonald",
+    "specialization": "Cardiology",
+    "email": "crystal63@yahoo.com",
+    "phone": "8570742709",
+    "availabledays": [
+      "Tuesday"
+    ],
+    "timeSolt": "03:00pm - 04:00pm"
+  },
+  {
+    "name": "Dr.Thomas Oneal",
+    "specialization": "Neurology",
+    "email": "mcdanielchristopher@middleton.com",
+    "phone": "4432943167",
+    "availabledays": [
+      "Tuesday",
+      "Monday"
+    ],
+    "timeSolt": "03:00pm - 04:00pm"
+  },
+  {
+    "name": "Dr.Mark Wong",
+    "specialization": "Cardiology",
+    "email": "sethfletcher@hotmail.com",
+    "phone": "2327566763",
+    "availabledays": [
+      "Thursday",
+      "Friday",
+      "Monday"
+    ],
+    "timeSolt": "11:00am - 12:00pm"
+  },
+  {
+    "name": "Dr.Brenda Williams",
+    "specialization": "Neurology",
+    "email": "youngchristopher@gmail.com",
+    "phone": "0239491845",
+    "availabledays": [
+      "Monday"
+    ],
+    "timeSolt": "03:00pm - 04:00pm"
+  },
+  {
+    "name": "Dr.Crystal Black",
+    "specialization": "Dermatology",
+    "email": "thenry@yahoo.com",
+    "phone": "5400025040",
+    "availabledays": [
+      "Thursday",
+      "Tuesday"
+    ],
+    "timeSolt": "09:00am - 10:00am"
+  },
+  {
+    "name": "Dr.Erin Arellano",
+    "specialization": "Urology",
+    "email": "shawnmorgan@gmail.com",
+    "phone": "5587540803",
+    "availabledays": [
+      "Monday",
+      "Friday"
+    ],
+    "timeSolt": "09:00am - 10:00am"
+  },
+  {
+    "name": "Dr.Molly Reed",
+    "specialization": "Psychiatry",
+    "email": "emily44@heath.com",
+    "phone": "4810777067",
+    "availabledays": [
+      "Wednesday"
+    ],
+    "timeSolt": "11:00am - 12:00pm"
+  },
+  {
+    "name": "Dr.Christopher Allen",
+    "specialization": "Gastroenterology",
+    "email": "nhenson@salazar-meyers.net",
+    "phone": "0237324556",
+    "availabledays": [
+      "Tuesday",
+      "Saturday",
+      "Monday"
+    ],
+    "timeSolt": "03:00pm - 04:00pm"
+  },
+  {
+    "name": "Dr.Chelsea Mccormick",
+    "specialization": "Orthopedics",
+    "email": "dpalmer@hotmail.com",
+    "phone": "4301912633",
+    "availabledays": [
+      "Wednesday"
+    ],
+    "timeSolt": "02:00pm - 03:00pm"
+  },
+  {
+    "name": "Dr.Zachary Trevino",
+    "specialization": "Dermatology",
+    "email": "hbrewer@cunningham.net",
+    "phone": "3318453574",
+    "availabledays": [
+      "Friday"
+    ],
+    "timeSolt": "01:00pm - 02:00pm"
+  },
+  {
+    "name": "Dr.Lisa Tran",
+    "specialization": "Orthopedics",
+    "email": "brenda02@yahoo.com",
+    "phone": "2812379332",
+    "availabledays": [
+      "Thursday"
+    ],
+    "timeSolt": "03:00pm - 04:00pm"
+  },
+  {
+    "name": "Dr.Charlotte Anderson",
+    "specialization": "Psychiatry",
+    "email": "jensenanthony@hotmail.com",
+    "phone": "7740382778",
+    "availabledays": [
+      "Friday",
+      "Wednesday",
+      "Saturday"
+    ],
+    "timeSolt": "01:00pm - 02:00pm"
+  },
+  {
+    "name": "Dr.Derrick Morales",
+    "specialization": "Dermatology",
+    "email": "kristen60@johnson.com",
+    "phone": "7345240598",
+    "availabledays": [
+      "Friday"
+    ],
+    "timeSolt": "03:00pm - 04:00pm"
+  },
+  {
+    "name": "Dr.Andrew Burton",
+    "specialization": "Cardiology",
+    "email": "bradyperez@murphy.biz",
+    "phone": "3762542566",
+    "availabledays": [
+      "Saturday",
+      "Monday"
+    ],
+    "timeSolt": "11:00am - 12:00pm"
+  },
+  {
+    "name": "Dr.Amanda Ballard",
+    "specialization": "Cardiology",
+    "email": "cunninghamdavid@yahoo.com",
+    "phone": "0829821532",
+    "availabledays": [
+      "Wednesday",
+      "Tuesday",
+      "Friday"
+    ],
+    "timeSolt": "01:00pm - 02:00pm"
+  },
+  {
+    "name": "Dr.Julia Massey",
+    "specialization": "Oncology",
+    "email": "simmonsmichelle@oliver.com",
+    "phone": "4560071542",
+    "availabledays": [
+      "Wednesday",
+      "Saturday",
+      "Tuesday"
+    ],
+    "timeSolt": "03:00pm - 04:00pm"
+  },
+  {
+    "name": "Dr.Michael Moss",
+    "specialization": "Dermatology",
+    "email": "joseph76@gmail.com",
+    "phone": "8487089840",
+    "availabledays": [
+      "Saturday",
+      "Thursday"
+    ],
+    "timeSolt": "03:00pm - 04:00pm"
+  },
+  {
+    "name": "Dr.Richard Crawford",
+    "specialization": "Neurology",
+    "email": "jody04@becker.com",
+    "phone": "6431953985",
+    "availabledays": [
+      "Friday"
+    ],
+    "timeSolt": "10:00am - 11:00am"
+  }
+]

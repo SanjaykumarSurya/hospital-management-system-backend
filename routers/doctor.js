@@ -4,7 +4,7 @@ import * as adminController from '../controller/admin.js';
 const router = express.Router();
 
 router.post('/doctors', (req, res) => {
-    const doctor = req.body;
+    // const doctor = req.body;
     adminController.createDoctor(req).then((result) => {
         if (!result) {
             res.status(500).send(result);

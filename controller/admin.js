@@ -6,10 +6,52 @@ import appointmentModel from "../model/appointment.js";
 import bcrypt from "bcryptjs";
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
+import sendMail from "../common/sendmail.js";
+import verificationModel from "../model/verification.js";
+import crypto from 'crypto'
 
 dotenv.config()
 
 const { ObjectId } = mongoose.Types
+
+export const sendOtp = async(req)=>{
+    try{
+        const {email} = req.body;
+        // const code = crypto.randomBytes(3).toString('hex');
+        const code = Math.floor(100000 + Math.random() * 900000).toString();
+
+        await verificationModel.create({
+            email, code
+        })
+        sendMail(code,email)
+        return{
+            message : 'Send Otp successfully'
+        }
+    }
+    catch(err){
+        return{
+            message : err.message
+        }
+    }
+}
+
+
+export const verifyOtp = async(req)=>{
+    try{
+        const {email, code} = req.body;
+        const verfiy = await verificationModel.findOne({email,code})
+       if (verfiy) {
+  await verificationModel.deleteOne({ _id: verfiy._id });
+  return { success: true };
+}
+return { success: false };
+    }
+    catch(err){
+        return{
+            message : err.message
+        }
+    }
+}
 
 const createSignup = async (req) => {
     try {
@@ -115,51 +157,12 @@ const createDoctor = async (req) => {
     }
 }
 
-// const createDoctor = async (req, res) => {
-//   try {
-//     const { name, specialization, email, phone, availabledays, timeslot } = req.body;
-
-//     // Debug log
-//     console.log("Creating doctor:", name);
-
-//     const newDoctor = await doctorModel.create({
-//       name,
-//       specialization,
-//       email,
-//       phone,
-//       availabledays,
-//       timeslot, // 🔁 Fixed typo: `timeSolt` → `timeslot`
-//     });
-
-//     return res.status(201).json({
-//       message: "Doctor created successfully",
-//       doctor: newDoctor,
-//     });
-//   } catch (err) {
-//     console.error("Doctor creation failed:", err.message);
-//     return res.status(500).json({
-//       message: "Error creating doctor",
-//       error: err.message,
-//     });
-//   }
-// };
-// export const createDoctor = async (req, res) => {
-//   try {
-//     // Logic to create a new doctor
-//     const doctor = new doctorModel(req.body);
-//     await doctor.save();
-//     res.status(201).json(doctor);
-//   } catch (error) {
-//     res.status(500).json({ error: 'Failed to create doctor' });
-//   }
-// };
-
 const getDoctor = async (req) => {
   try {
     const data = req.query;
     const sort = Number(data.sort ?? 1);
     const sortField = String(data.sortField ?? "name");
-    const limit = Number(data.limit ?? 5);
+    const limit = Number(data.limit ?? 100);
     const skip = Number(data.skip ?? 0);
 
     const doctors = await doctorModel.aggregate([
@@ -261,13 +264,13 @@ const getPatient = async (req) => {
         const data = req.query;
         const sort = Number(data.sort ?? 1);
         const sortField = String(data.sortField ?? "name");
-        const limit = Number(data.limit ?? 5);
+        const limit = Number(data.limit ?? 100);
         const skip = Number(data.skip ?? 0);
 
         const Patients = await patientModel.aggregate([
             { $sort: { [sortField]: sort } },
-            { $limit: limit },
-            { $skip: skip }
+            { $skip: skip },
+            { $limit: limit }
          ]);
         const count = await patientModel.countDocuments();
                    
@@ -276,9 +279,9 @@ const getPatient = async (req) => {
             Patients,
             totalCount: count
         };
-    }
-    catch (err) {
-        return {
+    }  catch (err) {
+   
+       return {
             message: err.message
         };
     }
@@ -363,42 +366,45 @@ const getAppointment = async (req) => {
     try {
         const data = req.query;
         const sort = Number(data.sort ?? 1);
-        const sortField = String(data.sortField ?? "Booked");
-        const limit = Number(data.limit ?? 20);
+        const sortField = String(data.sortField ?? "date");
+        const limit = Number(data.limit ?? 70);
         const skip = Number(data.skip ?? 0)
         const getAppointment = await appointmentModel.aggregate([
              {
-        $lookup: {
-          from: "patients",
-          localField: "patientId",
-          foreignField: "_id",
-          as: "patient"
-        }
-      },
-      { $unwind: "$patient" },
-      {
-        $lookup: {
-          from: "doctors",
-          localField: "doctorId",
-          foreignField: "_id",
-          as: "doctor"
-        }
-      },
-      { $unwind: "$doctor" },
-      {
-        $project: {
-          _id: 1,
-          date: 1,
-          status: 1,
-          notes: 1,
-          patientName: "$patient.name",
-          doctorName: "$doctor.name"
-        }
-      },
+                $lookup: {
+                    from: "patients",
+                    localField: "patientId",
+                    foreignField: "_id",
+                    as: "patient"
+                }
+            },
+            { $unwind: { path: "$patient", preserveNullAndEmptyArrays: true }  },
+            {
+                $lookup: {
+                    from: "doctors",
+                    localField: "doctorId",
+                    foreignField: "_id",
+                    as: "doctor"
+                }
+            },
+            { $unwind: { path: "$doctor", preserveNullAndEmptyArrays: true } },
+            {
+                $project: {
+                    _id: 1,
+                    date: 1,
+                    status: 1,
+                    notes: 1,
+                    patientId: 1,
+                    doctorId: 1,
+                    patientName: "$patient.name",
+                    doctorName: "$doctor.name"
+                }
+            },
 
-            { $sort: { [sortField]: sort } },
-            { $limit: limit },
+            { $sort: { [sortField]: sort, _id:1 } },
             { $skip: skip },
+            { $limit: limit }
+            
         ]);
         const count = await appointmentModel.countDocuments();
 
@@ -407,13 +413,14 @@ const getAppointment = async (req) => {
             getAppointment,
             totalCount: count
         };
-    }
-    catch (err) {
+    }  catch (err) {
+   
         return {
             message: err.message
         };
     }
 }
+
 const deleteAppointment = async (req) => {
     try {
         const appointmentId = req.params.appointmentId;

@@ -7,7 +7,7 @@ const adminSchema = new mongoose.Schema({
         type : String,
         enum : ["admin", "receptionist"],
         default : "admin",
-        require: true
+        required: true
     },
     password : {type :String, required : true}
 },{

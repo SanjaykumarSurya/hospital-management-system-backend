@@ -1,12 +1,10 @@
 import express from 'express';
 import * as fileController from "../controller/file.js";
-// import upload from '../common/fileupload.js';
-import multer from 'multer';
+import upload from '../common/fileupload.js';
 
 const router = express.Router();
-const upload = multer({ dest: 'uploads/' });
 
-router.post('/reports',upload.single('file'),(req,res)=>{
+router.post('/reports',upload.single('fileUrl'),(req,res)=>{
     fileController.uploadFile(req).then((result)=>{
         if(!result){
             res.status(400).json(result)
@@ -42,7 +40,7 @@ router.get('/reports/:fileId',(req,res)=>{
     }))
 })
 
-router.put('/reports/:fileId',upload.single('report'),(req,res)=>{
+router.put('/reports/:fileId',upload.single('file'),(req,res)=>{
     fileController.updateFile(req).then((result)=>{
         if(!result){
             res.status(500).send(result)

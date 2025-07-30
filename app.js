@@ -15,6 +15,8 @@ import patientRouter from './routers/patient.js';
 import appointmentRouter from './routers/appointments.js';
 import reportRouter from './routers/report.js';
 import downloadRouter from './routers/download.js';
+import data from './data.js';
+
 
 
 dotenv.config();
@@ -26,7 +28,7 @@ const mongodb = process.env.MONGO_URL
 
 mongoose.connect(mongodb)
 .then(()=> {
-    console.log("Database connted")
+    console.log("Database Connected")
 })
 .catch((err)=>{
     console.log("Database ERROR: ", err)
@@ -40,15 +42,13 @@ app.use(cors({
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
-app.use('/api', doctorRouter);
+app.use('/api', doctorRouter, data);
 app.use('/api', patientRouter);
 app.use('/api', appointmentRouter);
 app.use('/api', reportRouter)
 app.use('/api', downloadRouter);
 app.use('/api',admin, doctor, appointment, patient, report);
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-app.use('/uploads', express.static(path.join(process.cwd(), 'uploads')));
-// app.use('/uploads', express.static(path.resolve('uploads')));
 app.listen(port, (err)=>{
     if(err) throw err;
     console.log(`Server Running port is ${port}`)
