@@ -9,7 +9,8 @@ const adminSchema = new mongoose.Schema({
         default : "admin",
         required: true
     },
-    password : {type :String, required : true}
+    password : {type :String, required : true},
+    
 },{
     versionKey : false,
     timestamps : true

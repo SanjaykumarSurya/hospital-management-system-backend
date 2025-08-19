@@ -1,7 +1,7 @@
 import express from 'express';
 import * as adminController from '../controller/admin.js';
-import admin from '../model/admin.js';
 const router = express.Router();
+import admin from '../model/admin.js';
 
 router.post('/signup', (req, res) => {
     adminController.createSignup(req).then((result) => {
@@ -69,7 +69,7 @@ router.post('/verifyOtp', (req, res) => {
             return
         }
         res.status(201).send(result)
-    })
+    }) 
         .catch(err => res.status(500).send({
             message: err.message
         }))
@@ -84,15 +84,38 @@ router.post('/check-email', async (req, res) => {
     }
 
     const existingUser = await admin.findOne({ email });
-
     res.status(200).json({ exists: !!existingUser });
-  } catch (err) {
-    console.error('Email check error:', err.message);
-    res.status(500).json({ message: 'Server error while checking email' });
+  } catch (error) {
+    console.error('Error checking email:', error.message);
+    res.status(500).json({ message: 'Server error' });
   }
 });
+router.post('/send-otp', async (req, res) => {
+   adminController.sendotp(req).then((result) => {
+        if (!result) {
+            res.status(500).send(result);
+            return
+        }
+        res.status(201).send(result)
+    })
+        .catch(err => res.status(500).send({
+            message: err.message
+        }))
+})
+// router.post('/reset-password',async (req,res) => {
+//     adminController. resetPassword(req).then((result )=>{
+//         if(!result) {
+//             res.status(400).send(result);
+//             return
+//         }
+//         res.status(200).send(result)
+//     })
+//         .catch(err => res.status(500).send({
+//             message:err.message
+//     }))
 
-
-
+// })
+router.post('/reset-password', adminController.resetPassword);
+    
 
 export default router
